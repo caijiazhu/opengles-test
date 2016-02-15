@@ -24,7 +24,27 @@ int printEGLConfigurations(EGLDisplay dpy)
     EGLint returnVal = eglGetConfigs(dpy, NULL, 0, &numConfig);
     if (EGL_FALSE == returnVal)
     {
-        
+        return false;
+    }
+    
+    printf("Number of EGL configuration : %d\n", numConfig);
+    
+    EGLConfig* configs = (EGLConfig*)malloc(numConfig * sizeof(EGLConfig));
+    if (!configs)
+    {
+        printf("Could not allocate configs.\n");
+        return false;
+    }
+    
+    returnVal = eglGetConfigs(dpy, configs, numConfig, &numConfig);
+    checkEglError("eglGetConfigs", returnVal);
+    if (EGL_FALSE == returnVal)
+    {
+        if (configs)
+        {
+            free(configs);
+            configs = NULL;
+        }
         return false;
     }
 }

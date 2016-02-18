@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="RtlHardcoded">
+        <ignore path="res/layout/activity_gl2_java.xml" />
+    </issue>
+    <issue id="RtlSymmetry">
+        <ignore path="res/layout/activity_gl2_java.xml" />
+    </issue>
+</lint>
